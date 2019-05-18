@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var model = require('../models/notice');
-var Notice = model.Notice;
 
+var notice = require('../models/notice');
+var resource = require('../models/resource');
+
+var Notice = notice.Notice;
+var Resource = resource.Resource;
 
 // mongoose连接
 mongoose.connect('mongodb://127.0.0.1:27017/course_learning');
@@ -29,6 +32,24 @@ router.post('/createNotice', function(req, res, next) {
   })
   console.log(notice);
   notice.save(function(err, doc) {
+    console.log(err, 'err');
+    console.log(doc, 'doc');
+    res.json({
+      code: 0,
+      msg: 'create success'
+    });
+  })
+});
+
+router.post('/resource/submit', function(req, res, next) {
+  var resource = new Resource({
+    uri: req.body.uri,
+    name: req.body.name,
+    desc: req.body.desc,
+    files: req.body.files
+  })
+  console.log(resource);
+  resource.save(function(err, doc) {
     console.log(err, 'err');
     console.log(doc, 'doc');
     res.json({

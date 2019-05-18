@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-var model = require('../models/notice');
+var notice = require('../models/notice');
+var resource = require('../models/resource');
 
-var Notice = model.Notice;
+var Notice = notice.Notice;
+var Resource = resource.Resource;
 
 // mongoose连接
 mongoose.connect('mongodb://127.0.0.1:27017/course_learning');
@@ -25,7 +27,16 @@ router.get('/notice/list', function(req, res, next) {
     console.log(err, doc);
     res.json({
       code: 0,
-      msg: 'create success',
+      data: doc
+    });
+  })
+});
+
+router.get('/resource/list', function(req, res, next) {
+  Resource.find((err, doc) => {
+    console.log(err, doc);
+    res.json({
+      code: 0,
       data: doc
     });
   })
