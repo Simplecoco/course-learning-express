@@ -11,6 +11,16 @@ var io = {
       userName: 'Mr.Chen',
       uid: '777',
       socketId: ''
+    },
+    {
+      userName: '佩奇',
+      uid: '666',
+      socketId: ''
+    },
+    {
+      userName: '乔治',
+      uid: '111',
+      socketId: ''
     }
   ],
 
@@ -38,6 +48,7 @@ var io = {
       
       if (socketio.sockets.connected[socket.id]) {
         socketio.sockets.connected[socket.id].emit('connected', loginUser);
+        socketio.emit('user connected', loginUser);
       }
       // socketio.emit('connected', loginUser)
       
