@@ -10,7 +10,7 @@ var Resource = resource.Resource;
 
 // mongoose连接
 mongoose.connect('mongodb://127.0.0.1:27017/course_learning');
-const con = mongoose.connection;
+var con = mongoose.connection;
 con.on('error', console.error.bind(console, '连接数据库失败'));
 con.once('open',()=>{
     //成功连接

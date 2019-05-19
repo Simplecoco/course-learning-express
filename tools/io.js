@@ -38,7 +38,7 @@ var io = {
       
       // 找出登入的用户
       // 这里先拿出未登录的队列第一个用户
-      const loginUser = me.offlineUsers.shift()
+      var loginUser = me.offlineUsers.shift()
       console.log(loginUser, 'loginUser');
       console.log(socket);
       loginUser.socketId = socket.id
@@ -66,12 +66,12 @@ var io = {
           console.log(me.onlineUsers, '3');
           
           // 找出登出用户
-          const tmpLogoutUser = me.onlineUsers.find((item) => {
+          var tmpLogoutUser = me.onlineUsers.find((item) => {
             return item.socketId === socket.id
           })
           
           // 将用户从session中取出，放入未登录队列中
-          const logoutUser = me.onlineUsers.splice(me.onlineUsers.indexOf(tmpLogoutUser), 1)[0]
+          var logoutUser = me.onlineUsers.splice(me.onlineUsers.indexOf(tmpLogoutUser), 1)[0]
           logoutUser.socketId = ''
           me.offlineUsers.push(logoutUser)
           
